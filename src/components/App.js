@@ -3,7 +3,6 @@ import Header from "./Header";
 import ToDoItem from "./ToDoItem";
 
 class App extends React.Component {
-  // Creates state object
   state = {
     listOfItems: [],
     itemId: 0,
@@ -37,7 +36,7 @@ class App extends React.Component {
     // variable to hold copy of the array
     let listOfItems = this.state.listOfItems;
     // gets the object with id that matches the parameter passed into this function (object id associated with the individual button that was clicked) 
-    let buttonMatch = listOfItems.find(x => x.id === identifier);
+    let buttonMatch = listOfItems.find(x => x.itemId === identifier);
     // get the index of that object in the listOfItems array
     let index = listOfItems.indexOf(buttonMatch);
     // . Splice matched object from array list removing ToDoItem, retuning new array
@@ -68,7 +67,7 @@ class App extends React.Component {
               index={index}
               itemText={object.itemText}
               deleteListItem={this.deleteListItem}
-              match={object.id}
+              match={object.itemId}
             />
           ))}
         </ul>
