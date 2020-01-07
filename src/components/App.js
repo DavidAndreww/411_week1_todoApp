@@ -35,7 +35,7 @@ class App extends React.Component {
   deleteListItem = identifier => {
     // variable to hold copy of the array
     let listOfItems = this.state.listOfItems;
-    // gets the object with id that matches the parameter passed into this function (object id associated with the individual button that was clicked) 
+    // gets the object with id that matches the parameter passed into this function (object id associated with the individual button that was clicked)
     let buttonMatch = listOfItems.find(x => x.itemId === identifier);
     // get the index of that object in the listOfItems array
     let index = listOfItems.indexOf(buttonMatch);
@@ -43,6 +43,14 @@ class App extends React.Component {
     listOfItems.splice(index, 1);
     // . Update state to the new array
     this.setState({ listOfItem: [...listOfItems] });
+  };
+
+  editListItem = identifier => {
+    let listOfItems = this.state.listOfItems;
+    let buttonMatch = listOfItems.find(x => x.itemId === identifier);
+    let index = listOfItems.indexOf(buttonMatch);
+    console.log(index);
+    console.log(buttonMatch.itemText);
   };
 
   render() {
@@ -57,6 +65,11 @@ class App extends React.Component {
             ref={this.userInput} // ref= references DOM node on page, relies on React.createRef();
             required
             placeholder="Whaddya gotta do?"
+            onKeyPress={e => {
+              if (e.which === 13) {
+                this.createListItem();
+              }
+            }}
           />
           <button onClick={() => this.createListItem()}>Add Item</button>
         </div>
@@ -67,6 +80,7 @@ class App extends React.Component {
               index={index}
               itemText={object.itemText}
               deleteListItem={this.deleteListItem}
+              editListItem={this.editListItem}
               match={object.itemId}
             />
           ))}
