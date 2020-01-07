@@ -45,6 +45,7 @@ class App extends React.Component {
     this.setState({ listOfItem: [...listOfItems] });
   };
 
+  // selects field when clicked. doesn't do anything but console.log()...trying to allow user to edit a pre-existing list item
   editListItem = identifier => {
     let listOfItems = this.state.listOfItems;
     let buttonMatch = listOfItems.find(x => x.itemId === identifier);
